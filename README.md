@@ -51,7 +51,7 @@ The repository includes an animation of carrier-worker collaboration in an indus
   <em>Video 1. Carrier-worker cooperation in an industrial CMRSP environment.</em>
 </div>
 
-> **Note:** If the embedded video does not render in GitHub, please open [`media/Carrier_worker_cooperation.mp4`](media/Carrier_worker_cooperation.mp4) directly.
+> **Note:** If the embedded video does not render in GitHub, please open media/Carrier_worker_cooperation.mp4 directly.
 
 **Legend:**
 
