@@ -46,12 +46,12 @@ The repository includes an animation of carrier-worker collaboration in an indus
 - Multiple carrier-worker pairs operate concurrently while avoiding infeasible task reuse.
 
 <div align="center">
-  <img src="media/Carrier_worker_cooperation.gif" alt="Carrier-worker cooperation animation" width="70%">
+  <video src="media/Carrier_worker_cooperation.mp4" controls muted width="70%"></video>
   <br>
   <em>Video 1. Carrier-worker cooperation in an industrial CMRSP environment.</em>
 </div>
 
-> **Note:** A higher-quality MP4 version is available at [`media/Carrier_worker_cooperation.mp4`](media/Carrier_worker_cooperation.mp4).
+> **Note:** If the embedded video does not render in GitHub, please open [`media/Carrier_worker_cooperation.mp4`](media/Carrier_worker_cooperation.mp4) directly.
 
 **Legend:**
 
