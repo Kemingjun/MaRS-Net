@@ -45,9 +45,13 @@ The repository includes an animation of carrier-worker collaboration in an indus
 - WRs enter local processing chambers after undocking.
 - Multiple carrier-worker pairs operate concurrently while avoiding infeasible task reuse.
 
-https://github.com/user-attachments/assets/928c993c-489d-4d9c-a9ef-b3bca33df0b6
+<div align="center">
+  <img src="media/Carrier_worker_cooperation.gif" alt="Carrier-worker cooperation animation" width="70%">
+  <br>
+  <em>Video 1. Carrier-worker cooperation in an industrial CMRSP environment.</em>
+</div>
 
-> **Note:** If the video above does not render, please view `media/Carrier_worker_cooperation.mp4` locally.
+> **Note:** A higher-quality MP4 version is available at [`media/Carrier_worker_cooperation.mp4`](media/Carrier_worker_cooperation.mp4).
 
 **Legend:**
 
