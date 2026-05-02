@@ -69,7 +69,7 @@ def _parse_size(folder_name: str) -> int:
 def discover_instances(instances_root: Path, sizes: Iterable[int] = None, max_instances_per_size: int = None) -> List[Dict[str, Any]]:
     selected_sizes = set(sizes) if sizes else None
     instances: List[Dict[str, Any]] = []
-    for size_dir in sorted(instances_root.glob("size_*_uniform")):
+    for size_dir in sorted(path for path in instances_root.glob("size_*") if path.is_dir()):
         size = _parse_size(size_dir.name)
         if selected_sizes and size not in selected_sizes:
             continue
@@ -346,8 +346,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--instances_root",
         type=str,
-        default=str(INSTANCE_ROOT / "uniform_100_per_scale_20260413"),
-        help="Root directory containing size_*_uniform instance folders.",
+        default=str(INSTANCE_ROOT / "Synthetic_Dataset"),
+        help="Root directory containing size_* instance folders.",
     )
     parser.add_argument(
         "--results_root",
@@ -380,6 +380,16 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def _resolve_instances_root(raw_path: str) -> Path:
+    path = Path(raw_path)
+    candidates = [path] if path.is_absolute() else [Path.cwd() / path, INSTANCE_ROOT / path]
+    for candidate in candidates:
+        candidate = candidate.resolve()
+        if candidate.exists():
+            return candidate
+    return candidates[-1].resolve()
+
+
 def _format_runtime(runtime_s: Any) -> str:
     if runtime_s is None or pd.isna(runtime_s):
         return "NA"
@@ -394,7 +404,7 @@ def _format_fitness(fitness: Any) -> str:
 
 def main() -> None:
     args = parse_args()
-    instances_root = Path(args.instances_root).resolve()
+    instances_root = _resolve_instances_root(args.instances_root)
     results_root = Path(args.results_root).resolve()
 
     if args.resume_dir:

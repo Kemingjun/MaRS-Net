@@ -30,7 +30,7 @@ def parse_args():
     parser.add_argument(
         "--dataset",
         type=str,
-        default="uniform_100_per_scale_20260413/size_20_uniform",
+        default="Synthetic_Dataset/size_20_uniform",
         help="Dataset folder under Instance/, or an absolute path inside Instance/."
     )
     parser.add_argument(
@@ -84,13 +84,18 @@ def parse_args():
 
 def normalize_dataset_arg(dataset_arg: str, repo_root: Path) -> str:
     dataset_path = Path(dataset_arg)
+    instance_root = repo_root / "Instance"
+    if not instance_root.exists():
+        instance_root = repo_root.parent / "Instance"
     if dataset_path.exists():
-        instance_root = repo_root / "Instance"
         try:
             relative = dataset_path.resolve().relative_to(instance_root.resolve())
             return relative.as_posix()
         except ValueError:
             raise ValueError(f"Dataset path must be inside {instance_root}, got: {dataset_arg}")
+    candidate = instance_root / dataset_path
+    if candidate.exists():
+        return candidate.relative_to(instance_root).as_posix()
     return dataset_arg.replace("\\", "/")
 
 

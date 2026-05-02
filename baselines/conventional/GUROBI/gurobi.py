@@ -652,7 +652,7 @@ def parse_arguments():
     parser.add_argument(
         "--load_path",
         type=str,
-        default="uniform_100_per_scale_20260413/size_10_uniform/T10_I1_uniform.xlsx",
+        default="Synthetic_Dataset/size_10_uniform/T10_I1_uniform.xlsx",
         help="Full path to the instance .xlsx file.",
     )
     parser.add_argument(

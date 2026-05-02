@@ -364,6 +364,6 @@ r = 20
 
 #
 if __name__ == "__main__":
-    instance_name = "uniform_100_per_scale_20260413/size_40_uniform/T40_I8_uniform"
+    instance_name = "Synthetic_Dataset/size_40_uniform/T40_I8_uniform"
     # instance = read_excel(instance_name + ".xlsx")
     DABC(instance_name)

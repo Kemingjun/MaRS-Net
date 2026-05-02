@@ -152,7 +152,7 @@ def ALNS(instance_name, max_iterations=1000, time_limit_s=3600, seed=None):
 
 
 if __name__ == "__main__":
-    instance_name = "uniform_100_per_scale_20260413/size_10_uniform/T10_I1_uniform"
+    instance_name = "Synthetic_Dataset/size_10_uniform/T10_I1_uniform"
     # instance_name = "T10_I1"
     # instance = read_excel(instance_name + ".xlsx")
     solution, _, _ = ALNS(instance_name)

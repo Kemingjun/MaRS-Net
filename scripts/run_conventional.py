@@ -17,9 +17,12 @@ from solver_adapters import EXACT_SOLVERS, META_SOLVERS, INSTANCE_ROOT, run_solv
 
 def _resolve_instance(raw_path):
     path = Path(raw_path)
-    if not path.is_absolute():
-        path = (REPO_ROOT / path).resolve()
-    return path
+    candidates = [path] if path.is_absolute() else [REPO_ROOT / path, INSTANCE_ROOT / path]
+    for candidate in candidates:
+        candidate = candidate.resolve()
+        if candidate.exists():
+            return candidate
+    return candidates[-1].resolve()
 
 
 def _parse_size(path):

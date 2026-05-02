@@ -189,7 +189,7 @@ Greedy decoding on the 20-task uniform benchmark:
 ```bash
 python scripts/eval_drl.py \
   --method marsnet \
-  --dataset Instance/uniform_100_per_scale_20260413/size_20_uniform \
+  --dataset Synthetic_Dataset \
   --model checkpoints/marsnet/size_20 \
   --decode_strategy greedy \
   --eval_batch_size 1
@@ -200,17 +200,17 @@ Sampling with 1280 candidate solutions:
 ```bash
 python scripts/eval_drl.py \
   --method marsnet \
-  --dataset Instance/uniform_100_per_scale_20260413/size_20_uniform \
+  --dataset Synthetic_Dataset \
   --model checkpoints/marsnet/size_20 \
   --decode_strategy sample \
   --width 1280 \
   --eval_batch_size 1
 ```
 
-To evaluate another scale, change both the dataset folder and checkpoint folder, for example:
+To evaluate another scale, change the checkpoint folder. The dataset family is resolved automatically from the checkpoint size:
 
 ```text
-Instance/uniform_100_per_scale_20260413/size_40_uniform
+Synthetic_Dataset
 checkpoints/marsnet/size_40
 ```
 
@@ -227,14 +227,14 @@ HDRL and TDRL are adapted to CMRSP while preserving their original core design p
 ```bash
 python scripts/eval_drl.py \
   --method hdrl \
-  --dataset Instance/uniform_100_per_scale_20260413/size_20_uniform \
+  --dataset Synthetic_Dataset \
   --model checkpoints/hdrl/size_20 \
   --decode_strategy greedy \
   --eval_batch_size 1
 
 python scripts/eval_drl.py \
   --method tdrl \
-  --dataset Instance/uniform_100_per_scale_20260413/size_20_uniform \
+  --dataset Synthetic_Dataset \
   --model checkpoints/tdrl/size_20 \
   --decode_strategy greedy \
   --eval_batch_size 1
@@ -297,7 +297,7 @@ Run OR-Tools:
 ```bash
 python scripts/run_conventional.py \
   --solver or_tool \
-  --instance Instance/uniform_100_per_scale_20260413/size_10_uniform/T10_I1_uniform.xlsx \
+  --instance Synthetic_Dataset/size_10_uniform/T10_I1_uniform.xlsx \
   --time_limit 60
 ```
 
@@ -306,7 +306,7 @@ Run ALNS:
 ```bash
 python scripts/run_conventional.py \
   --solver ALNS \
-  --instance Instance/uniform_100_per_scale_20260413/size_10_uniform/T10_I1_uniform.xlsx \
+  --instance Synthetic_Dataset/size_10_uniform/T10_I1_uniform.xlsx \
   --max_iterations 100 \
   --seed 1234
 ```
@@ -321,7 +321,7 @@ Run a batch benchmark over MaRS-Net and DRL baselines:
 
 ```bash
 python scripts/benchmark_all.py \
-  --dataset Instance/uniform_100_per_scale_20260413/size_20_uniform \
+  --dataset Synthetic_Dataset \
   --methods marsnet hdrl tdrl \
   --decode_strategies greedy sample \
   --sample_width 1280 \
@@ -351,7 +351,7 @@ Run a minimal MaRS-Net checkpoint loading test:
 ```bash
 python scripts/eval_drl.py \
   --method marsnet \
-  --dataset Instance/uniform_100_per_scale_20260413/size_20_uniform \
+  --dataset Synthetic_Dataset \
   --model checkpoints/marsnet/size_20 \
   --decode_strategy greedy \
   --eval_batch_size 1 \
