@@ -1,0 +1,20 @@
+name: marsnet
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - "numpy<2"
+  - scipy
+  - pandas
+  - openpyxl
+  - tqdm
+  - matplotlib
+  - pytorch
+  - torchvision
+  - pip:
+      - tensorboard_logger
+      - ortools
+      - gurobipy

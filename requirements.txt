@@ -1,0 +1,11 @@
+torch
+torchvision
+numpy<2
+scipy
+pandas
+openpyxl
+tqdm
+matplotlib
+tensorboard_logger
+ortools
+gurobipy

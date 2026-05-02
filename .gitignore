@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.log
+.idea/
+.vscode/
+
+logs/
+outputs/
+results/
+!docs/results/
+!docs/results/.gitkeep
+docs/results/tmp/
+
+.ipynb_checkpoints/
+*.tmp
+*.bak

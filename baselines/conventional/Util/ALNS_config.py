@@ -1,0 +1,9 @@
+d_num_coefficient = 0.3  
+T_coefficient = 10
+rho = 0.1  # reaction factor
+C = 10
+sigma_1 = 33
+sigma_2 = 13
+sigma_3 = 9
+l_s = 15
+shaw_weight = 0.3
