@@ -36,22 +36,22 @@ Figure 1 illustrates the **cooperative workflow of carrier and worker robots**. 
 
 ---
 
-## 🎬 Visualization Demo
+## 🎬 Webots Simulation Demo
 
-The repository includes an animation of carrier-worker collaboration in an industrial environment. The video shows how multiple CRs and WRs execute tasks under CMRSP synchronization constraints:
+The repository includes a Webots simulation of carrier-worker collaboration in an industrial environment. The video illustrates how CRs and WRs physically cooperate under CMRSP synchronization constraints:
 
 - CRs navigate through main aisles.
-- WRs are transported by CRs between stations.
-- WRs enter local processing chambers after undocking.
-- Multiple carrier-worker pairs operate concurrently while avoiding infeasible task reuse.
+- WRs dock with CRs for inter-station transport.
+- CR-WR coupled units move synchronously before undocking.
+- WRs enter local processing chambers after being released at destination stations.
 
 <div align="center">
-  <video src="media/Carrier_worker_cooperation.mp4" controls muted width="70%"></video>
+  <video src="media/Webots_carrier_worker_cooperation.mp4" controls muted width="70%"></video>
   <br>
-  <em>Video 1. Carrier-worker cooperation in an industrial CMRSP environment.</em>
+  <em>Video 1. Webots simulation of carrier-worker cooperation in an industrial CMRSP environment.</em>
 </div>
 
-> **Note:** If the embedded video does not render in GitHub, please open media/Carrier_worker_cooperation.mp4 directly.
+> **Note:** If the embedded video does not render in GitHub, please open media/Webots_carrier_worker_cooperation.mp4 directly.
 
 **Legend:**
 
