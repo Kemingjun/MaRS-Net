@@ -1,4 +1,4 @@
-import math
+from pathlib import Path
 
 
 M_parent = 4  
@@ -28,7 +28,7 @@ iter_max = 500
 
 
 def load_distance():
-    filename = "D:/AHASP_attention/conventional/AHASP_conventional/Util/distance_cache.txt"
+    filename = Path(__file__).resolve().with_name("distance_cache.txt")
     cache = {}
     try:
         with open(filename, 'r') as f:

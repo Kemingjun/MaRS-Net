@@ -113,12 +113,6 @@ def discover_model_dirs(outputs_dir: Path):
 
 
 def sequence_to_list(problem_name, seq):
-    if problem_name == "tsp":
-        return seq.tolist()
-    if problem_name in ("cvrp", "sdvrp", "cvrptw"):
-        return np.trim_zeros(seq).tolist() + [0]
-    if problem_name in ("op", "pctsp"):
-        return np.trim_zeros(seq).tolist()
     if problem_name in ("hrsp", "ahasp"):
         return seq.tolist()
     raise AssertionError(f"Unknown problem: {problem_name}")

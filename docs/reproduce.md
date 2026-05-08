@@ -38,5 +38,5 @@ python scripts/run_conventional.py --solver ALNS --instance Synthetic_Dataset/si
 ## Batch Benchmark
 
 ```bash
-python scripts/benchmark_all.py --dataset Synthetic_Dataset --methods marsnet hdrl tdrl --decode_strategies greedy sample --sample_width 1280 --eval_batch_size 1 --out_prefix final_synthetic
+python scripts/benchmark_all.py --dataset Synthetic_Dataset --methods marsnet hdrl tdrl --decode_strategies greedy sample --sample_width 1280 --eval_batch_size 1 --sizes 10 20 40 60 100 --out_prefix final_synthetic
 ```

@@ -7,6 +7,24 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+INSTANCE_ROOT = REPO_ROOT / "Instance"
+
+
+def _model_size(model_dir):
+    try:
+        return int(model_dir.name.split("_")[1])
+    except (IndexError, ValueError):
+        return None
+
+
+def _dataset_available(dataset, size):
+    if size is None:
+        return True
+    if dataset == "Synthetic_Dataset":
+        return (INSTANCE_ROOT / "Synthetic_Dataset" / f"size_{size}_uniform").exists()
+    if dataset == "Industrial_Dataset":
+        return (INSTANCE_ROOT / "Industrial_Dataset" / f"size_{size}").exists()
+    return True
 
 
 def _run(cmd):
@@ -54,12 +72,19 @@ def main():
     parser.add_argument("--sample_width", type=int, default=1280)
     parser.add_argument("--eval_batch_size", type=int, default=1)
     parser.add_argument("--out_prefix", default="benchmark_results")
+    parser.add_argument("--sizes", nargs="*", type=int, default=None)
     args = parser.parse_args()
 
     rows = []
     for method in args.methods:
         checkpoint_root = REPO_ROOT / "checkpoints" / method
         for model_dir in sorted(checkpoint_root.glob("size_*")):
+            size = _model_size(model_dir)
+            if args.sizes is not None and size not in args.sizes:
+                continue
+            if not _dataset_available(args.dataset, size):
+                print(f"Skipping {method}/{model_dir.name}: dataset '{args.dataset}' has no size_{size} instances.")
+                continue
             for strategy in args.decode_strategies:
                 cmd = [
                     sys.executable,
@@ -86,6 +111,9 @@ def main():
                 }
                 rows.append(row)
                 print(row)
+
+    if not rows:
+        raise RuntimeError("No benchmark rows were generated. Check --dataset, --methods, and --sizes.")
 
     csv_path = REPO_ROOT / f"{args.out_prefix}.csv"
     md_path = REPO_ROOT / f"{args.out_prefix}.md"

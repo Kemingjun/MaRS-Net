@@ -202,7 +202,7 @@ class GraphAttentionEncoder(nn.Module):
 
     def forward(self, x, mask=None):
 
-        assert mask is None, "TODO mask not yet supported!"
+        assert mask is None, "Mask input is not used by this encoder."
 
         # Batch multiply to get initial embeddings of nodes
         h = self.init_embed(x.view(-1, x.size(-1))).view(*x.size()[:2], -1) if self.init_embed is not None else x
