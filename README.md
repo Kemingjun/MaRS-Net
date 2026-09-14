@@ -83,8 +83,6 @@ MaRS-Net learns a policy over the structured MDP for CCWSP. Each composite actio
   <em>Figure 3. Policy network architecture of MaRS-Net.</em>
 </div>
 
-The diagram's label "Completed task mask" denotes tasks already scheduled during construction, not tasks physically completed at a common execution time.
-
 The framework consists of two main modules:
 
 ### 1. Dual-Stream Encoder
