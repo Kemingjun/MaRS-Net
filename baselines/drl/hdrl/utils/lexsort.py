@@ -22,22 +22,22 @@ def _torch_lexsort_cuda(keys, dim=-1):
 
     # Swap axis such that sort dim is last and reshape all other dims to a single (batch) dimension
     reordered_keys = tuple(key.transpose(dim, -1).contiguous() for key in keys)
-    flat_keys = tuple(key.view(-1) for key in keys)
+    vector_keys = tuple(key.view(-1) for key in keys)
     d = keys[0].size(dim)  # Sort dimension size
-    numel = flat_keys[0].numel()
+    numel = vector_keys[0].numel()
     batch_size = numel // d
     batch_key = torch.arange(batch_size, dtype=torch.int64, device=keys[0].device)[:, None].repeat(1, d).view(-1)
 
-    flat_keys = flat_keys + (batch_key,)
+    vector_keys = vector_keys + (batch_key,)
 
     # We rely on undocumented behavior that the sort is stable provided that
     if numel < MIN_NUMEL_STABLE_SORT:
         n_rep = (MIN_NUMEL_STABLE_SORT + numel - 1) // numel  # Ceil
         rep_key = torch.arange(n_rep, dtype=torch.int64, device=keys[0].device)[:, None].repeat(1, numel).view(-1)
-        flat_keys = tuple(k.repeat(n_rep) for k in flat_keys) + (rep_key,)
+        vector_keys = tuple(k.repeat(n_rep) for k in vector_keys) + (rep_key,)
 
     idx = None  # Identity sorting initially
-    for k in flat_keys:
+    for k in vector_keys:
         if idx is None:
             _, idx = k.sort(-1)
         else:

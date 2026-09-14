@@ -179,7 +179,7 @@ class RolloutBaseline(Baseline):
         return BaselineDataset(dataset, rollout(self.model, dataset, self.opts).view(-1, 1))
 
     def unwrap_batch(self, batch):
-        return batch['data'], batch['baseline'].view(-1)  # Flatten result to undo wrapping as 2D
+        return batch['data'], batch['baseline'].view(-1)  # Restore one baseline value per instance.
 
     def eval(self, x, c):
         # Use volatile mode for efficient inference (single batch so we do not use rollout function)

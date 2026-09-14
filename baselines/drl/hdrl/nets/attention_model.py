@@ -312,11 +312,11 @@ class AttentionModel(nn.Module):
 
         
         b_idx = torch.arange(B, device=device).view(B, 1, 1).expand(B, R, L)  # [B,R,L]
-        flat_idx = (b_idx * N + route_clamped).reshape(-1).long()  # [B*R*L]
+        linear_indices = (b_idx * N + route_clamped).reshape(-1).long()  # [B*R*L]
 
         
-        emb_flat = node_embeddings.reshape(B * N, D).contiguous()  # [B*N, D]
-        gathered = emb_flat.index_select(0, flat_idx).reshape(B, R, L, D)  # [B,R,L,D]
+        embedding_rows = node_embeddings.reshape(B * N, D).contiguous()  # [B*N, D]
+        gathered = embedding_rows.index_select(0, linear_indices).reshape(B, R, L, D)  # [B,R,L,D]
 
         
         mask_f = mask.unsqueeze(-1).to(gathered.dtype)  # [B,R,L,1]
@@ -353,11 +353,11 @@ class AttentionModel(nn.Module):
 
         
         b_idx = torch.arange(B, device=device).view(B, 1, 1).expand(B, R, L)
-        flat_idx = (b_idx * N + route_clamped).reshape(-1).long()
+        linear_indices = (b_idx * N + route_clamped).reshape(-1).long()
 
         
-        emb_flat = node_embeddings.reshape(B * N, D).contiguous()  # [B*N, D]
-        gathered = emb_flat.index_select(0, flat_idx).reshape(B, R, L, D)  # [B,R,L,D]
+        embedding_rows = node_embeddings.reshape(B * N, D).contiguous()  # [B*N, D]
+        gathered = embedding_rows.index_select(0, linear_indices).reshape(B, R, L, D)  # [B,R,L,D]
 
         
         mask_bool = mask.unsqueeze(-1)  # [B,R,L,1]

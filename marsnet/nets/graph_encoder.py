@@ -65,18 +65,18 @@ class MultiHeadAttention(nn.Module):
         assert q.size(2) == input_dim
         assert input_dim == self.input_dim, "Wrong embedding dimension of input"
 
-        hflat = h.contiguous().view(-1, input_dim)
-        qflat = q.contiguous().view(-1, input_dim)
+        h_rows = h.contiguous().view(-1, input_dim)
+        q_rows = q.contiguous().view(-1, input_dim)
 
         # last dimension can be different for keys and values
         shp = (self.n_heads, batch_size, graph_size, -1)
         shp_q = (self.n_heads, batch_size, n_query, -1)
 
         # Calculate queries, (n_heads, n_query, graph_size, key/val_size)
-        Q = torch.matmul(qflat, self.W_query).view(shp_q)
+        Q = torch.matmul(q_rows, self.W_query).view(shp_q)
         # Calculate keys and values (n_heads, batch_size, graph_size, key/val_size)
-        K = torch.matmul(hflat, self.W_key).view(shp)
-        V = torch.matmul(hflat, self.W_val).view(shp)
+        K = torch.matmul(h_rows, self.W_key).view(shp)
+        V = torch.matmul(h_rows, self.W_val).view(shp)
 
         # Calculate compatibility (n_heads, batch_size, n_query, graph_size)
         compatibility = self.norm_factor * torch.matmul(Q, K.transpose(2, 3))

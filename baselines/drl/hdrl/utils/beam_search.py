@@ -55,7 +55,7 @@ class BatchBeam(NamedTuple):
     """
     Class that keeps track of a beam for beam search in batch mode.
     Since the beam size of different entries in the batch may vary, the tensors are not (batch_size, beam_size, ...)
-    but rather (sum_i beam_size_i, ...), i.e. flattened. This makes some operations a bit cumbersome.
+    but rather (sum_i beam_size_i, ...), with batch and beam entries merged into one dimension.
     """
     score: torch.Tensor  # Current heuristic score of each entry in beam (used to select most promising)
     state: None  # To track the state
@@ -67,7 +67,7 @@ class BatchBeam(NamedTuple):
     # Indicates for each row to which batch it belongs (0, 0, 0, 1, 1, 2, ...), managed by state
     @property
     def ids(self):
-        return self.state.ids.view(-1)  # Need to flat as state has steps dimension
+        return self.state.ids.view(-1)  # Return one ID per beam entry.
 
     def __getitem__(self, key):
         assert torch.is_tensor(key) or isinstance(key, slice)  # If tensor, idx all tensors by this tensor:
