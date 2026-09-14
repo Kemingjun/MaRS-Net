@@ -79,7 +79,7 @@ def run(opts):
     if opts.baseline == 'exponential':
         baseline = ExponentialBaseline(opts.exp_beta)
     elif opts.baseline == 'critic' or opts.baseline == 'critic_lstm':
-        raise ValueError("Critic baselines are not used in the released CMRSP experiments.")
+        raise ValueError("Critic baselines are not used in the released CCWSP experiments.")
     elif opts.baseline == 'rollout':
         baseline = RolloutBaseline(model, problem, opts)
     else:

@@ -1,10 +1,10 @@
 # Adapted TDRL Baseline
 
-This directory contains the TDRL-based DRL baseline adapted to CMRSP.
+This directory contains the TDRL-based DRL baseline adapted to the Collaborative Carrier-Worker Scheduling Problem (CCWSP).
 
 The implementation preserves the baseline's token-style state coding and GRU-based dynamic token update mechanism, while adapting the problem-specific components to synchronized marsupial robot scheduling:
 
-- task, robot, and environment tokens encode CMRSP states;
+- task, robot, and environment tokens encode CCWSP states, including robot availability times;
 - robot and environment tokens are updated according to synchronized cooperative execution;
 - the action space is adapted to carrier-worker-task assignment;
 - the decoder includes a carrier-worker coupler for feasible cooperative execution.

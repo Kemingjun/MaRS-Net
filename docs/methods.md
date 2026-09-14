@@ -2,7 +2,11 @@
 
 ## MaRS-Net
 
-`marsnet/` contains the final MaRS-Net model used in the revised manuscript. The model uses dual-stream task/robot encoding and task-first cooperative assignment without completion-mask augmentation.
+`marsnet/` implements MaRS-Net for the Collaborative Carrier-Worker Scheduling Problem (CCWSP). The structured MDP represents a construction step as a task and a complete carrier-worker pair. Synchronized transitions maintain robot availability, and the action sequence induces the routes.
+
+The policy uses dual-stream task/robot encoding and task-first hierarchical decoding. Static task embeddings are computed once per instance, while dynamic robot embeddings are recomputed from the locations and availability times after previously scheduled operations. A hard task-selection mask prevents duplicate scheduling; no mask bit is appended to the embeddings.
+
+Internal identifiers such as `ahasp`, `visited_`, and `cur_time` remain unchanged for checkpoint and import compatibility. They refer to CCWSP, already scheduled tasks, and robot availability times, respectively. Construction steps are not shared physical execution timestamps.
 
 ## DRL Baselines
 
@@ -24,3 +28,7 @@ For both DRL baselines, the decoder is adapted with a carrier-worker coupler so 
 - DIWO.
 
 The exact solvers are most suitable for small and medium instances. Metaheuristics are intended for scalable heuristic comparison.
+
+## Release Coverage
+
+See [reproducibility_status.md](reproducibility_status.md) for checkpoint provenance and the mapping from manuscript experiments to released assets. The Webots video illustrates the execution workflow; the simulation world and controllers are not included.

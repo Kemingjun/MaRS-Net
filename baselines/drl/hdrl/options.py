@@ -6,7 +6,7 @@ import torch
 
 def get_options(args=None):
     parser = argparse.ArgumentParser(
-        description="Adapted HDRL baseline for CMRSP scheduling with reinforcement learning")
+        description="Adapted HDRL baseline for CCWSP scheduling with reinforcement learning")
 
     # Data
     parser.add_argument('--problem', default='ahasp', help="The problem to solve, default 'ahasp'")

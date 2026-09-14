@@ -41,7 +41,7 @@ def _parse_size(path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run one conventional CMRSP baseline on one instance.")
+    parser = argparse.ArgumentParser(description="Run one conventional CCWSP baseline on one instance.")
     parser.add_argument("--solver", required=True, choices=list(EXACT_SOLVERS) + list(META_SOLVERS))
     parser.add_argument("--instance", required=True)
     parser.add_argument("--time_limit", type=int, default=300)

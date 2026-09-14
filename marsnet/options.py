@@ -6,7 +6,7 @@ import torch
 
 def get_options(args=None):
     parser = argparse.ArgumentParser(
-        description="Attention-based policy for CMRSP scheduling with reinforcement learning")
+        description="Attention-based policy for CCWSP scheduling with reinforcement learning")
 
     # Data
     parser.add_argument('--problem', default='ahasp', help="The problem to solve, default 'ahasp'")
