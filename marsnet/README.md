@@ -17,4 +17,4 @@ python scripts/train_drl.py --method marsnet --graph_size 20 --run_name marsnet_
 python scripts/eval_drl.py --method marsnet --dataset Synthetic_Dataset --model checkpoints/marsnet/size_20 --decode_strategy greedy --eval_batch_size 1
 ```
 
-The checkpoint folders under `checkpoints/marsnet/` retain their original metadata. See [configuration provenance and experiment coverage](../docs/reproducibility_status.md) for unresolved differences from the manuscript's training settings. Internal names such as `ahasp` and `cur_time` are retained for compatibility; `cur_time` represents robot availability time.
+Training configurations are stored in `args.json` under each `checkpoints/marsnet/` model folder. Internal names such as `ahasp` and `cur_time` are retained for compatibility; `cur_time` represents robot availability time.

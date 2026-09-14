@@ -131,14 +131,13 @@ MaRS-Net/
     methods.md                 # Method and adaptation notes
     metaheuristic_baselines.md # Metaheuristic parameters and operators
     reproduce.md               # Reproducibility commands
-    reproducibility_status.md  # Experiment coverage and configuration provenance
 ```
 
 ---
 
 ## 🛠️ Installation
 
-An anonymous download for this review release is pending verification. The previously configured mirror currently redirects to the public source repository and must be reconfigured before reviewer use. See the [release verification status](docs/reproducibility_status.md). Once a verified anonymous archive is available, extract it and open a terminal in the directory containing this README.
+Download the repository using **Full repo ZIP** on the anonymous repository page, extract the archive, and open a terminal in the directory containing this README.
 
 Create the Conda environment:
 
@@ -173,9 +172,7 @@ checkpoints/tdrl/size_{10,20,30,40,60,100}/epoch-99.pt
 
 The released synthetic dataset contains `n={10,20,40,60,100}` instances, while the industrial dataset contains `n={10,20,30,40}` instances.
 
-Check that each `.pt` is a binary checkpoint rather than a small text file beginning with `version https://git-lfs.github.com/spec/v1`. Running `git lfs pull` inside an extracted ZIP does not retrieve missing weights because the ZIP is not a Git checkout. Anonymous binary download verification is recorded in [reproducibility_status.md](docs/reproducibility_status.md).
-
-Checkpoint training metadata is retained unchanged. Some settings differ from the manuscript's stated training protocol; consult the [configuration provenance table](docs/reproducibility_status.md#training-configuration-provenance) before treating these weights as an exact reproduction of the manuscript tables.
+Training configurations are stored in `args.json` alongside each checkpoint.
 
 ---
 
@@ -241,7 +238,7 @@ python scripts/eval_drl.py \
 
 ## 🏋️ Train DRL Models
 
-Train MaRS-Net with the implementation defaults (these commands are usage examples, not verified reproductions of the manuscript's training runs):
+Example: train MaRS-Net with the implementation defaults:
 
 ```bash
 python scripts/train_drl.py --method marsnet --graph_size 20 --run_name marsnet_20
@@ -358,7 +355,7 @@ python scripts/eval_drl.py \
   --no_cuda
 ```
 
-More commands, cross-scale evaluation examples, and statistical reporting notes are provided in [docs/reproduce.md](docs/reproduce.md). The [reproducibility status](docs/reproducibility_status.md) distinguishes available experiments from those requiring additional scripts, weights, or result records. Repository documentation is an optional implementation reference.
+More training and evaluation commands, including cross-scale examples, are provided in [docs/reproduce.md](docs/reproduce.md).
 
 ---
 

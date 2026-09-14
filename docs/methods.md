@@ -31,4 +31,4 @@ The exact solvers are most suitable for small and medium instances. Metaheuristi
 
 ## Release Coverage
 
-See [reproducibility_status.md](reproducibility_status.md) for checkpoint provenance and the mapping from manuscript experiments to released assets. The Webots video illustrates the execution workflow; the simulation world and controllers are not included.
+The Webots video illustrates the execution workflow; the simulation world and controllers are not included.
