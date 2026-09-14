@@ -51,7 +51,7 @@ The Webots video illustrates the carrier–worker task-execution workflow in an 
   <em>Video 1. Webots demonstration of the collaborative carrier–worker workflow.</em>
 </div>
 
-> **Note:** If the embedded video does not render, [open or download the video](media/Webots_carrier_worker_cooperation.mp4). This release contains the demonstration recording; Webots world files and controllers are not included. The demonstration illustrates the execution workflow and does not establish deployment-level closed-loop performance.
+> **Note:** If the embedded video does not render, open `Webots_carrier_worker_cooperation.mp4` from the repository's `media/` folder. This release contains the demonstration recording; Webots world files and controllers are not included. The demonstration illustrates the execution workflow and does not establish deployment-level closed-loop performance.
 
 **Legend:**
 
